@@ -56,6 +56,18 @@ describe('demo routes', () => {
     expect(res.body).toEqual([npc1, npc2, npc3]);
   });
 
+  test('deletes npc1', async () => {
+    const npc1 = await Npc.insert({
+      name: 'mable',
+      age: 69,
+    });
+
+    const res = await request(app).delete(`/api/v1/npcs/${npc1.id}`);
+
+    expect(res.body).toEqual(npc1);
+
+  });
+
 
 
 
