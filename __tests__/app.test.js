@@ -37,6 +37,27 @@ describe('demo routes', () => {
 
   });
 
+  test('finds all npcs via GET route', async () => {
+
+    const npc1 = await Npc.insert({
+      name: 'mable',
+      age: 69,
+    });
+    const npc2 = await Npc.insert({
+      name: 'bob',
+      age: 420,
+    });
+    const npc3 = await Npc.insert({
+      name: 'damien',
+      age: 666,
+    });
+
+    const res = await request(app).get('/api/v1/npcs');
+    expect(res.body).toEqual([npc1, npc2, npc3]);
+  });
+
+
+
 
 
 });
