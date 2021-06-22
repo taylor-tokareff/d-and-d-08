@@ -68,8 +68,24 @@ describe('demo routes', () => {
 
   });
 
+  test('it updates a npc', async () => {
+    const npc1 = await Npc.insert({
+      name: 'mable',
+      age: 69,
+    });
+    const npc2 = await Npc.insert({
+      name: 'bob',
+      age: 420,
+    });
+    const res = await request(app).put(`/api/v1/npcs/${npc1.id}`).send(npc2);
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'bob',
+      age: 420,
+    });
 
 
-
+  });
 
 });
+
