@@ -26,6 +26,17 @@ describe('demo routes', () => {
 
   });
 
+  test('find a npc by id via Get route', async () => {
+    const npc = await Npc.insert({
+      name: 'mable',
+      age: 69,
+    });
+    const res = await request(app).get(`/api/v1/npcs/${npc.id}`);
+
+    expect(res.body).toEqual(npc);
+
+  });
+
 
 
 });
